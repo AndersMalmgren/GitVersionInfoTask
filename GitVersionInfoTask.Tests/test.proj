@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="GetVersion">
+  <PropertyGroup>
+  </PropertyGroup>
+
+  <UsingTask
+      TaskName="VersionInfoTask"
+      AssemblyFile="..\GitVersionInfoTask\bin\debug\GitVersionInfo.dll"></UsingTask>
+
+  <UsingTask
+    TaskName="CreateVersionInfoFileTask"
+    AssemblyFile="..\GitVersionInfoTask\bin\debug\GitVersionInfo.dll"></UsingTask>
+
+  <Target Name="GetVersion">
+    <VersionInfoTask RepoPath="C:\Users\ama\Documents\Projekt\FreePIE">
+      <Output PropertyName="Version" TaskParameter="Version" />
+    </VersionInfoTask>
+    <CreateVersionInfoFileTask VersionInfoFilePath="VersionInfo.cs" Version="$(Version)" />
+  </Target>
+</Project>
